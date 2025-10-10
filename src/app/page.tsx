@@ -8,11 +8,12 @@ export default function Home() {
       <p>A racing game for wild animals.</p>
 
       <Image
-        src="/logo.png"
-        alt=" Wild Race Logo"
+        src="/logo.svg"
+        alt="Wild Race Logo"
         width={300}
         height={300}
-      />  
+        priority
+      />
     </div>
   );
 }

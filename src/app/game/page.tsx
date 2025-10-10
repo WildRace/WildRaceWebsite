@@ -1,7 +1,7 @@
 import React from "react";
 
 function Game() {
-  return <div>Game Page</div>;
+  return <div>Coming soooooooooooooon.................</div>;
 }
 
 export default Game;
