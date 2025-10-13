@@ -8,9 +8,8 @@ function Footer() {
         bottom: 0,
         left: 0,
         width: "100%",
-        backgroundColor: "white",
         textAlign: "center",
-        color: "black",
+        color: "#ffffffff",
       }}
     >
       <p>&copy; 2025 Wild Race.</p>
