@@ -1,0 +1,93 @@
+name: Bug Report
+description: Report a bug, defect, or unexpected behavior.
+title: "[BUG]: <Describe the issue briefly>"
+labels: ["bug", "needs-triage"]
+assignees: [] # Auto-assign a team member if desired
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report!
+        Please fill out the form below to help us reproduce and fix the issue quickly.
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How critical is this issue?
+      options:
+        - Medium (Default)
+        - High (Blocking, severe loss of functionality)
+        - Low (Minor inconvenience, cosmetic)
+    default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      description: Select the impact level.
+      options:
+        - Major (Core feature broken)
+        - Minor (Non-core feature broken)
+        - Cosmetic (Styling, visual issue)
+    default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 1. Description of the Bug
+      description: A clear and concise description of what the bug is, including symptoms and impact.
+      placeholder: Describe the bug here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 2. Steps to Reproduce
+      description: List the steps to reproduce the behavior exactly.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 3. Expected vs. Actual Result
+      description: |
+        What should have happened?
+        What actually happened?
+      placeholder: |
+        Expected: The page should have loaded correctly.
+        Actual: The page showed a 500 server error.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 4. Environment Details
+      description: Please provide your operating system, browser, and application version.
+      placeholder: |
+        * OS: Windows 11
+        * Browser: Chrome 120.0
+        * App Version: v1.5.0
+    validations:
+      required: true
+
+  - type: input
+    id: screenshots
+    attributes:
+      label: 5. Screenshots/Recordings Link (Optional)
+      description: A link to any visual proof (e.g., Imgur, Loom, Google Drive).
+    validations:
+      required: false
+      

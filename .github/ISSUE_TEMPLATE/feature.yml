@@ -1,0 +1,58 @@
+name: Feature Request
+description: Propose a new feature, enhancement, or general improvement.
+title: "[FEATURE]: <New feature name>"
+labels: ["enhancement", "feature-request"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your idea! Please describe the problem you are trying to solve or the new capability you'd like to see.
+
+  - type: textarea
+    id: problem-or-goal
+    attributes:
+      label: 1. Goal/Problem to Solve
+      description: Briefly explain the problem or opportunity this feature addresses.
+      placeholder: Users waste time because they have to export data from two different systems to create a single report.
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: 2. User Story
+      description: Describe the feature from the user's perspective (As a [type of user], I want [some goal], so that [some reason/benefit]).
+      placeholder: As a power user, I want a single 'Export All Data' button so that I can generate my full report in one click.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 3. Proposed Solution/Details
+      description: Describe what the feature should be and how it should work (high-level).
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteria
+    attributes:
+      label: 4. Acceptance Criteria
+      description: A checklist of conditions that must be met for this feature to be considered complete.
+      placeholder: |
+        * [ ] The new button must be placed next to the 'Download' button.
+        * [ ] The export includes all fields from both data sources.
+        * [ ] An email notification is sent to the user upon export completion.
+    validations:
+      required: true
+
+  - type: input
+    id: context
+    attributes:
+      label: 5. Additional Context (Optional)
+      description: Links to design mocks, supporting docs, or competitor examples.
+    validations:
+      required: false
+      
