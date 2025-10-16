@@ -1,12 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
   const navStyles = {
     display: "flex",
     justifyContent: "space-between",
     padding: "1rem 2rem",
-    background: "linear-gradient(to right, #270f0fff, rgba(148, 57, 57, 1)ff, #d83939ff)",
+    background:
+      "linear-gradient(to right, #270f0fff, rgba(148, 57, 57, 1)ff, #d83939ff)",
     boxShadow: "0 2px 15px rgba(255, 32, 32, 0.2)",
     position: "sticky" as const,
     top: 0,
@@ -29,7 +33,7 @@ function Navbar() {
     borderRadius: "4px",
     transition: "all 0.3s ease",
     textShadow: "0 0 15px rgba(219, 175, 0, 0.5)",
-    ':hover': {
+    ":hover": {
       backgroundColor: "rgba(255, 127, 127, 0.1)",
       color: "#ffffff",
       textShadow: "0 0 15px rgba(219, 175, 0, 0.5)",
@@ -40,31 +44,75 @@ function Navbar() {
     ...linkStyles,
     background: "linear-gradient(to right, #d83939ff, #db0000ff)",
     color: "#ffffff",
-    ':hover': {
+    ":hover": {
       background: "linear-gradient(to right, #d83939ff, #db0000ff)",
       boxShadow: "0 0 15px rgba(219, 175, 0, 0.5)",
     },
   };
 
+  const [authStatus, setAuthStatus] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // This code only runs in the browser
+    if (typeof window !== "undefined") {
+      const storedAuth = localStorage.getItem("isAuth");
+      // Convert the string value to a boolean
+      if (storedAuth === "true") {
+        setAuthStatus(true);
+      }
+    }
+  }, []);
+
   return (
-    <nav style={navStyles}>
-      <div style={linkContainerStyles}>
-        <Link href="/" style={linkStyles}>
-          Home
-        </Link>
-        <Link href="/about" style={linkStyles}>
-          About
-        </Link>
-        <Link href="/game" style={linkStyles}>
-          Game
-        </Link>
-      </div>
-      <div>
-        <Link href="/login" style={loginStyles}>
-          Login
-        </Link>
-      </div>
-    </nav>
+    <>
+      {authStatus ? (
+        <nav style={navStyles}>
+          <div style={linkContainerStyles}>
+            <Link href="/" style={linkStyles}>
+              Home
+            </Link>
+            <Link href="/about" style={linkStyles}>
+              About
+            </Link>
+            <Link href="/game" style={linkStyles}>
+              Game
+            </Link>
+            <Link href="/leaderboard" style={linkStyles}>
+              Leaderboard
+            </Link>
+          </div>
+          <div>
+            <button style={loginStyles} onClick={() => {
+              localStorage.removeItem("isAuth");
+              setAuthStatus(false);
+              router.push("/");
+            }}>
+              Logout
+            </button>
+          </div>
+        </nav>
+      ) : (
+        <nav style={navStyles}>
+          <div style={linkContainerStyles}>
+            <Link href="/" style={linkStyles}>
+              Home
+            </Link>
+            <Link href="/about" style={linkStyles}>
+              About
+            </Link>
+            <Link href="/game" style={linkStyles}>
+              Game
+            </Link>
+          </div>
+          <div>
+            <Link href="/login" style={loginStyles}>
+              Login
+            </Link>
+          </div>
+        </nav>
+      )}
+    </>
   );
 }
 

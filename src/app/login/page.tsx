@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, User } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
 import Link from "next/link";
 
@@ -58,6 +58,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,6 +66,9 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in successfully");
+      localStorage.setItem("isAuth", "true");
+      setUser(auth.currentUser);
+      // router.refresh();
       router.push("/");
     } catch (err: unknown) {
       if (err instanceof Error) {
